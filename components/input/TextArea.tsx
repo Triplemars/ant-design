@@ -108,6 +108,11 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
     }
   }
 
+  handleOnBlur =(e) => {
+      const { onBlur } = this.props;
+      if (onBlur) onBlur(e);
+  };
+
   saveTextAreaRef = (textArea: HTMLTextAreaElement) => {
     this.textAreaRef = textArea;
   }
@@ -118,6 +123,7 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
       'prefixCls',
       'onPressEnter',
       'autosize',
+      'onBlur'
     ]);
     const style = {
       ...props.style,
@@ -135,6 +141,7 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
         style={style}
         onKeyDown={this.handleKeyDown}
         onChange={this.handleTextareaChange}
+        onBlur={this.handleOnBlur}
         ref={this.saveTextAreaRef}
       />
     );
