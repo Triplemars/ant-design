@@ -29,6 +29,7 @@ export interface TextAreaProps extends HTMLTextareaProps {
   prefixCls?: string;
   autosize?: boolean | AutoSizeType;
   onPressEnter?: React.KeyboardEventHandler<HTMLTextAreaElement>;
+  onBlur?: React.FormEventHandler<HTMLTextAreaElement>;
 }
 
 export interface TextAreaState {
@@ -108,7 +109,7 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
     }
   }
 
-  handleOnBlur =(e) => {
+  handleOnBlur =(e: React.FormEvent<HTMLTextAreaElement>) => {
       const { onBlur } = this.props;
       if (onBlur) onBlur(e);
   };
@@ -123,7 +124,7 @@ export default class TextArea extends React.Component<TextAreaProps, TextAreaSta
       'prefixCls',
       'onPressEnter',
       'autosize',
-      'onBlur'
+      'onBlur',
     ]);
     const style = {
       ...props.style,
